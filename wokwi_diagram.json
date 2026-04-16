@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "author": "LD7182",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-s3-devkitc-1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": -80.2,
+      "left": 220.8,
+      "attrs": { "color": "red", "label": "PIR Sensor" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -80,
+      "left": 320,
+      "attrs": { "color": "red", "label": "Alert LED" }
+    },
+    { "type": "wokwi-resistor", "id": "r1", "top": -30, "left": 320, "attrs": { "value": "330" } },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": -80,
+      "left": 380,
+      "attrs": { "color": "green", "label": "Status LED" }
+    },
+    { "type": "wokwi-resistor", "id": "r2", "top": -30, "left": 380, "attrs": { "value": "330" } },
+    { "type": "wokwi-buzzer", "id": "buz1", "top": -80, "left": 450, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": 100, "left": 220, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "btn1:1.l", "esp:13", "green", [] ],
+    [ "btn1:2.l", "esp:3V3.1", "red", [] ],
+    [ "esp:2", "led1:A", "orange", [] ],
+    [ "led1:C", "r1:1", "orange", [] ],
+    [ "r1:2", "esp:GND.1", "black", [] ],
+    [ "esp:4", "led2:A", "yellow", [] ],
+    [ "led2:C", "r2:1", "yellow", [] ],
+    [ "r2:2", "esp:GND.2", "black", [] ],
+    [ "esp:5", "buz1:1", "purple", [] ],
+    [ "buz1:2", "esp:GND.3", "black", [] ],
+    [ "dht1:VCC", "esp:3V3.2", "red", [] ],
+    [ "dht1:SDA", "esp:15", "blue", [] ],
+    [ "dht1:GND", "esp:GND.4", "black", [] ]
+  ],
+  "dependencies": {}
+}
